@@ -6,37 +6,52 @@
 package com.springboot.swagger.model;
 
 import io.swagger.annotations.ApiModelProperty;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author alvel
  */
 @Entity
-   public class Invoice {
+@Table(name = "INVOICE")
+public class Invoice {
 
-        @Id
-        private String asd;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-        
-        
-        
-        private String username;
-        
-        private String token;
-        
-        private String extTid;
-        
-        private String pin;
-        
-        private String dealerUser;
-        
-         private String dealerLocation;
+    @Column(name = "ASD")
+    private String asd;
+
+    @Column(name = "USERNAME")
+    private String username;
+
+    @Column(name = "TOKEN")
+    private String token;
+
+    @Column(name = "EXTTID")
+    private String extTid;
+
+    @Column(name = "PIN")
+    private String pin;
+
+    @Column(name = "DEALERUSER")
+    private String dealerUser;
+
+    @Column(name = "DEALERLOCATION")
+    private String dealerLocation;
+    
+    public Invoice(){
+   
+}
 
     public Invoice(String asd, String username, String token, String extTid, String pin, String dealerUser, String dealerLocation) {
         this.asd = asd;
-       
         this.username = username;
         this.token = token;
         this.extTid = extTid;
@@ -45,15 +60,25 @@ import javax.persistence.Id;
         this.dealerLocation = dealerLocation;
     }
 
-    public String getInput() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getAsd() {
         return asd;
     }
 
-    public void setInput(String input) {
-        this.asd = input;
+    public void setAsd(String asd) {
+        this.asd = asd;
     }
+    
+    
 
-
+  
 
     public String getUsername() {
         return username;
@@ -103,5 +128,4 @@ import javax.persistence.Id;
         this.dealerLocation = dealerLocation;
     }
 
-         
-    }
+}
