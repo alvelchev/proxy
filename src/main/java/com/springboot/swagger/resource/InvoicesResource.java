@@ -24,6 +24,7 @@ public class InvoicesResource {
     }
 
 //JPA
+    
     @GetMapping
     public List<Invoice> getInvoice() {
         List<Invoice> invoices = invoiceRepository.findAll();
