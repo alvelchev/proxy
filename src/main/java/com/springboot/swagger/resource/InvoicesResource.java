@@ -25,6 +25,7 @@ public class InvoicesResource {
     public void setEmployeeService(InvoiceRepository invoiceRepository) {
   this.invoiceRepository = invoiceRepository;
  }
+    
 //JPA
 //    @GetMapping
 //    public List<Invoice> getInvoice() {
