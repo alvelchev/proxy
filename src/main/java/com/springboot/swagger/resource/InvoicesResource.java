@@ -2,6 +2,7 @@ package com.springboot.swagger.resource;
 
 import com.springboot.swagger.InvoiceRepository.InvoiceRepository;
 import com.springboot.swagger.model.Invoice;
+import com.springboot.swagger.service.InvoiceService;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 @RequestMapping("/rest/invoice")
@@ -19,17 +21,18 @@ public class InvoicesResource {
     @Autowired
     InvoiceRepository invoiceRepository;
 
-    public void setEmployeeService(InvoiceRepository invoiceRepository) {
+    @Autowired
+    InvoiceService invoiceService;
+
+    public void setInvoiceService(InvoiceRepository invoiceRepository) {
         this.invoiceRepository = invoiceRepository;
     }
 
 //JPA
-    
     @GetMapping
     public List<Invoice> getInvoice() {
         List<Invoice> invoices = invoiceRepository.findAll();
         return invoices;
-
     }
 
     //Hardcoded values
@@ -46,5 +49,10 @@ public class InvoicesResource {
         return new Invoice("a", "c", "d", "r", "y", "q", "a");
     }
 
+    @PostMapping("/api/invoices")
+    public void saveEmployee(Invoice invoices) {
+        invoiceService.saveInvoice(invoices);
+        System.out.println("Invoice Saved Successfully");
+    }
 
 }
