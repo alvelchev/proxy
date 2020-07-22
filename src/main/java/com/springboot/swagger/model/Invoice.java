@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.springboot.swagger.model;
 
-import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +17,10 @@ import javax.persistence.Table;
 public class Invoice {
 
     @Id
-    
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "ID")
+    private Integer id;
 
     @Column(name = "ASD")
     private String asd;
@@ -44,10 +42,10 @@ public class Invoice {
 
     @Column(name = "DEALERLOCATION")
     private String dealerLocation;
-    
-    public Invoice(){
-   
-}
+
+    public Invoice() {
+
+    }
 
     public Invoice(String asd, String username, String token, String extTid, String pin, String dealerUser, String dealerLocation) {
         this.asd = asd;
@@ -59,7 +57,13 @@ public class Invoice {
         this.dealerLocation = dealerLocation;
     }
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getAsd() {
         return asd;
@@ -68,10 +72,6 @@ public class Invoice {
     public void setAsd(String asd) {
         this.asd = asd;
     }
-    
-    
-
-  
 
     public String getUsername() {
         return username;

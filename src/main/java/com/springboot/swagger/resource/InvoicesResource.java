@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/rest/invoice")
@@ -53,6 +55,20 @@ public class InvoicesResource {
     public void saveEmployee(Invoice invoices) {
         invoiceService.saveInvoice(invoices);
         System.out.println("Invoice Saved Successfully");
+    }
+    
+    
+    @PostMapping("/api/invoices1")
+    public void saveEmployee1(@RequestBody Invoice invoices) {
+        invoiceService.saveInvoice(invoices);
+        System.out.println("Invoice Saved Successfully");
+    }
+    
+        @DeleteMapping("/api/invoices/{id}")
+    public void deleteInvoice(@PathVariable("id") Integer id) {
+        if (id != null) {
+            invoiceRepository.delete(id);
+        }
     }
 
 }
